@@ -1,0 +1,39 @@
+{%- extends "basic/layout.html" %}
+
+{%- block doctype %}
+<!DOCTYPE>
+{%- endblock doctype %}
+
+{%- block extrahead %}
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="{{ pathto('_static/ie6.css', 1) }}" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">  
+<script type="text/javascript">
+$(function(){ 
+    $('.document').addClass('container');
+    $('.footer').addClass('container');
+    $('.related').eq(0).addClass('navbar navbar-default'); 
+    $('.related').eq(0).find('ul').addClass('container');
+    $('.related').eq(1).hide(); 
+    $('form input[type=text]').addClass('form-control');
+    $('form input[type=submit]').addClass('btn btn-primary');
+}); 
+</script> 
+{% endblock %} 
+   
+{% block header %}
+{%- if logo %}
+<div class="header">
+  <div class="logo">
+    <a href="{{ pathto(master_doc) }}">
+      <img class="logo" src="{{ pathto('_static/' + logo, 1) }}" alt="Logo" />
+    </a>
+  </div>
+</div>  
+{%- endif %}
+{% endblock %}
+
+{%- block sidebarlogo %}{%- endblock %}
+{%- block sidebarsourcelink %}{%- endblock %}

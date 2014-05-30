@@ -1,0 +1,13 @@
+Jinja2==2.7.2
+MarkupSafe==0.21
+PyYAML==3.11
+Pygments==1.6
+Sphinx==1.2.2
+argh==0.24.1
+docutils==0.11
+pathtools==0.1.2
+pygments-style-solarized==0.1.1
+sphinxjp.themecore==0.2.0
+sphinxjp.themes.solarized==0.1.0
+sphinxtogithub==1.1.0
+watchdog==0.7.1

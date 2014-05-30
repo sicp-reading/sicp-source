@@ -1,0 +1,82 @@
+1.2.6 例: 素数性のテスト
+===========================
+
+=====================================================
+:math:`\Theta(\sqrt{\mathstrut n})` の素数性テスト
+=====================================================
+
+ある数が素数かどうかを判定する最も直感的なアルゴリズムは, 割る数を最小数 2 から始めて, 徐々に大きくしていく方法である.
+
+.. code-block:: scheme
+
+   (define (smallest-divisor n)
+     (find-divisor n 2))
+
+   (define (find-divisor n test-divisor)
+     (cond ((> (square test-divisor) n) n)
+           ((divides? test-divisor n) test-divisor)
+           (else (find-divisor n (+ test-divisor 1)))))
+
+   (define (divides? a b)
+     (= (remainder b a) 0))
+
+   (define (prime? n)
+     (= n (smallest-divisor n)))
+
+またこのテストにおいて n が素数かどうかを判定するのに n - 1 の値まで精査する必要はなく, :math:`\sqrt n` までの値を調べればよい.
+なぜなら n が d で割れるとするなら :math:`\frac{n}{d}` もまた割れて, 両者が :math:`\sqrt n` より大きくなることはないからである.
+(例えば 100 の約数を全て書き出して対になるペアの様子をみるとすぐに分かる.)
+
+よってこのテストで必要な除数は 1 と :math:`\sqrt n` の間に収まるので必要なステップ数は :math:`\Theta(\sqrt{\mathstrut n})` である.
+
+==================================================
+:math:`\Theta(\log n)` の素数性テスト
+==================================================
+
+次に :math:`\Theta(\log n)` の素数性テストを考える. これは Fermat の小定理に基づいている.
+
+Fermat の小定理
+  n を素数, a を n より小さい正の任意の整数とすると, a の n 乗は n を法として a と合同である
+  :math:`a^n \equiv a (\mod n)`
+
+この事実を元に次のようなアルゴリズムを考える. 与えられた数 n に対し, a < n なるランダムな数の n を法とした :math:`a^n` の剰余を計算する.
+結果が a でなければ n は **確実に** 素数ではない. (対偶命題) 結果が a なら n が素数である **確率は** 高い.
+更にいろいろな a の値で確かめることで結果の確信度を上げる.
+
+.. code-block:: scheme
+
+   (use srfi-27)
+
+   ;; ある数のべき乗を m で割った剰余を求める
+   ;; 逐次平方を使うので, ステップ数は対数的に増加する
+   (define (expmod base exp m)
+     (cond ((= exp 0) 1)
+           ((even? exp)
+            (remainder (square (expmod base (/ exp 2) m))
+                       m))
+           (else
+            (remainder (* base (expmod base (- exp 1) m))
+                       m))))
+
+   ;; Fermat テストに用いる数 a をランダムに選ぶ手続き
+   (define (fermat-test n)
+     (define (try-it a)
+       (= (expmod a n n) a))
+     (try-it (+ 1 (random-integer (- n 1)))))
+
+   ;; 引数に与えられた回数だけテストを実行する
+   ;; 一度でも失敗すると #f を返す
+   (define (fast-prime? n times)
+     (cond ((= times 0) #t)
+           ((fermat-test n) (fast-prime? n (- times 1)))
+           (else #f)))
+
+=================
+確率的方法
+=================
+
+n が Fermat テストに失敗すれば, 対偶命題より n は素数でないと分かる.
+しかし対偶命題は十分条件を与えるのみで, 必要条件ではないので Fermat テストを通過した数 n が素数であることは保証しない.
+実際, a < n なるすべての整数において Fermat テストを通過する数が存在し, それらは **Carmichael 数** と呼ばれる.
+
+また, エラーの機会を任意に小さくできるテストを確率的アルゴリズムと呼びこの種のアルゴリズムは暗号の世界において飛躍的進歩を遂げた.

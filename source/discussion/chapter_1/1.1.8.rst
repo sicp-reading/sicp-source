@@ -1,0 +1,77 @@
+1.1.8 ブラックボックス抽象としての手続き
+============================================
+
+sqrt-iter の定義は再帰的であり, そして sqrt-iter は自分自身を使って定義してあった.
+自身を使って定義するというのはそれがうまくいくのかどうかはっきりしないように思われる.
+この点については 1.2 節において詳しく述べられる.
+
+平方根を計算する問題においてプログラムをいくつかの部分に分けることができた.
+各手続きは他の手続きを定義する際, その部品として再利用できることが重要である.
+また square を使って good-enough? の手続きを定義するとき square をブラックボックスと考えることができる.
+square はいわゆる手続き抽象である.
+
+==========
+局所名
+==========
+
+手続きの仮パラメタは手続き定義の中でどんな名前をつかっても構わない.
+そういう名前を **束縛変数** といい, 手続き定義は仮パラメタを **束縛する** という.
+名前が束縛されている式の範囲を **有効範囲(スコープ)** といい, 束縛されていない変数は **自由である** という.
+
+=========================
+内部定義とブロック構造
+=========================
+
+現在の平方根プログラムは以下のようにバラバラの部品からできている.
+
+.. code-block:: scheme
+
+   (define (sqrt x)
+     (sqrt-iter 1.0 x))
+
+   (define (sqrt-iter guess x)
+     (if (good-enough? guess x)
+         guess
+         (sqrt-iter (improve guess x) x)))
+
+   (define (good-enough? guess x)
+     (< (abs (- (square guess) x)) 0.001))
+
+   (define (improve guess x)
+     (average guess (/ x guess)))
+
+利用者にとって重要なのは sqrt のみでそれ以外は隠蔽したい関数である.
+sqrt がそれぞれ自分の good-enough? 手続きを持つようにするのを可能にするため, 手続きは局所的に内部定義が出来るようにする.
+例えば平方根の問題で以下のように書くことが出来る.
+
+.. code-block:: scheme
+
+   (define (sqrt x)
+     (define (good-enough? guess x)
+       (< (abs (- (square guess) x)) 0.001))
+     (define (improve guess x)
+       (average guess (/ x guess)))
+     (define (sqrt-iter guess x)
+       (if (good-enough? guess x)
+           guess
+           (sqrt-iter (improve guess x) x)))
+     (sqrt-iter 1.0 x))
+
+このような定義の入れ子を **ブロック構造** という.
+
+さらに x は sqrt の定義に束縛されているのでその内部において有効範囲内である.
+つまりこの x を他の手続きに明示的に渡す必要はなく, x を内部定義において自由変数にすることができる.
+このやり方を **静的有効範囲(レキシカルスコープ)** といい, 以下のように簡略化できる.
+
+.. code-block:: scheme
+
+   (define (sqrt x)
+     (define (good-enough? guess)
+       (< (abs (- (square guess) x)) 0.001))
+     (define (improve guess)
+       (average guess (/ x guess)))
+     (define (sqrt-iter guess)
+       (if (good-enough? guess)
+           guess
+           (sqrt-iter (improve guess))))
+     (sqrt-iter 1.0))
