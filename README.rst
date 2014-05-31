@@ -1,4 +1,4 @@
-'(sicp_reading 運用)
+'(sicp-reading 運用)
 =====================
 
 :author: @naoiwata
@@ -35,6 +35,23 @@ sicpreading のソース構成と運用方法
 - sicp-source リポジトリのソースをビルドした html を置く.
   
 - http://sicp-reading.github.io に公開される.
+
+===============
+Github 使い方
+===============
+
+PullRequest 駆動開発
+-----------------------
+
+- 振り分けられた issue に対して branch を作成し, master に対して PR を送る.
+- PR を送った人以外がレビューをして問題なければ merge する.
+
+担当分は issue で管理
+-----------------------
+
+- issue を作成して担当者に振り分ける.
+- issue を作成する時は Label をつける.
+- Label は discussion(節の読解), answers(問題の回答), review(担当範囲のレビュー), question(質問), bug(記法のミスなど), hotfix(小さい修正)などがある.
 
 ==========    
 開発方法
