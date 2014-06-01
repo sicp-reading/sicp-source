@@ -1,6 +1,8 @@
 Exercise 1.8
 =====================
 
+:文責: @iriya_ufo
+
 .. sourcecode:: scheme
 
    (define (cubic-root-iter old-guess new-guess x)

@@ -1,6 +1,8 @@
 Exercise 1.9
 =====================
 
+:文責: @ayato_p
+
 .. sourcecode:: scheme
 
    (define (inc n)

@@ -1,6 +1,8 @@
 Exercise 1.7
 =====================
 
+:文責: @iriya_ufo
+
 テキストにある good-enough? テストは以下のようなものである.
 
 .. sourcecode:: scheme

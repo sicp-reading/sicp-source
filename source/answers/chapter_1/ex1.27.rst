@@ -1,6 +1,8 @@
 Exercise 1.27
 =====================
 
+:文責: @iriya_ufo
+
 .. sourcecode:: scheme
 
    (define (square x) (* x x))

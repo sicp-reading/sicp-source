@@ -1,6 +1,8 @@
 Exercise 1.25
 =====================
 
+:文責: @iriya_ufo
+
 最初の expmod は以下のような定義である.
 
 .. sourcecode:: scheme

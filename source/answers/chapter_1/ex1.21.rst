@@ -1,6 +1,8 @@
 Exercise 1.21
 =====================
 
+:文責: @iriya_ufo
+
 .. sourcecode:: scheme
 
    (define (smallest-divisor n)

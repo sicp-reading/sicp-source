@@ -1,6 +1,8 @@
 Exercise 1.1
 =====================
 
+:文責: @naoiwata
+
 .. sourcecode:: scheme
 
    ; 10

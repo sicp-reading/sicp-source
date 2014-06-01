@@ -1,6 +1,8 @@
 Exercise 1.2
 =====================
 
+:文責: @naoiwata
+
 .. sourcecode:: scheme
 
    (/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5)))))

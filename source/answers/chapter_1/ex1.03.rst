@@ -1,6 +1,8 @@
 Exercise 1.3
 =====================
 
+:文責: @naoiwata
+
 .. sourcecode:: scheme
 
    (define (square n) (* n n))

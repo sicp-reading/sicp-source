@@ -1,6 +1,8 @@
 Exercise 1.23
 =====================
 
+:文責: @iriya_ufo
+
 .. sourcecode:: scheme
 
    (use srfi-19)

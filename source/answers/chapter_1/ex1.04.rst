@@ -1,6 +1,8 @@
 Exercise 1.4
 =====================
 
+:文責: @naoiwata
+
 .. sourcecode:: scheme 
 
    (define (a-plus-abs-b a b)

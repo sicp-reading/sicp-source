@@ -1,6 +1,8 @@
 Exercise 1.5
 =====================
 
+:文責: @naoiwata
+
 .. sourcecode:: scheme 
 
    (define (p) (p))

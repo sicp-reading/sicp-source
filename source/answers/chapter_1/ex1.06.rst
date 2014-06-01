@@ -1,6 +1,8 @@
 Exercise 1.6
 =====================
 
+:文責: @naoiwata
+
 .. sourcecode:: scheme 
 
     (define (new-if predicate then-clause else-clause)

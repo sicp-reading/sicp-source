@@ -1,6 +1,8 @@
 Exercise 1.10
 =====================
 
+:文責: @ayato_p
+
 .. sourcecode:: scheme
 
    (define (A x y)
