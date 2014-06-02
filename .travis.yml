@@ -4,7 +4,8 @@ language: python
 python:
   - "2.7.5"
 
-script: 
+script:
+  - source venv/bin/activate
   - make html
 
   
