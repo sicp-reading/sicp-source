@@ -19,6 +19,8 @@ env:
 
 before_script:
   - git clone --quiet https://github.com/sicp-reading/sicp-reading.github.io.git build
+  - pushd build
+  - popd
 
 after_success:
   - cd build
