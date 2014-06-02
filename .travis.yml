@@ -18,6 +18,9 @@ env:
     - secure: "YJ0wnLiC11puyb9Un7Tu3rqoSGs2bUF/9QZPja5OpFSSl78fcFq+9x3mFv7AlsIZ9+q4TyCYrK/M2Pv0nz98tEIGbPW7SzsWYVlkXLdiRFVmaUaOpI3yCOY2y47cQmq3PawKfDbis1Kd/XvLT/rjyDLuukW0slRQ4k4xsP9St94="
 
 before_script:
+  - curl -O http://python-distribute.org/distribute_setup.py
+  - python2.7 distribute_setup.py
+  - easy_install virtualenv
   - git clone --quiet https://github.com/sicp-reading/sicp-reading.github.io.git build
   - pushd build
   - popd
