@@ -1,36 +1,32 @@
----
 language: python
-
 python:
-  - "2.7"
-
+ - '2.7'
 script:
-  - source venv/bin/activate
-  - make html
-
-  
+ - source venv/bin/activate
+ - make html
 env:
   global:
-    - GIT_COMMITTER_NAME = "travis"
-    - GIT_COMMITTER_EMAIL= "amasok23@gmail.com"
-    - GIT_AUTHOR_NAME= "travis"
-    - GIT_AUTHOR_EMAIL= "amasok23@gmail.com"
-    - secure: "YJ0wnLiC11puyb9Un7Tu3rqoSGs2bUF/9QZPja5OpFSSl78fcFq+9x3mFv7AlsIZ9+q4TyCYrK/M2Pv0nz98tEIGbPW7SzsWYVlkXLdiRFVmaUaOpI3yCOY2y47cQmq3PawKfDbis1Kd/XvLT/rjyDLuukW0slRQ4k4xsP9St94="
+    - secure: Y6Uwygn8ZpRTV2lP2KuVuLjpm437QVIRiBxTS8wyn90pbTcSblflGKXpuDB/8RY2LasfZhdZGqgEScwqbbl/PGYX6RtkjDA5nsG/lVc+ifJVnSRjICY5UM5Aj+d/P9jvR4zyRsxmGVmjU5VWFkYo+Qz7cY09mnfmHnp9T62KzSY=
 
 install:
-  - source install.sh
+ - source install.sh
 
 before_script:
-  - curl -O http://python-distribute.org/distribute_setup.py
-  - python2.7 distribute_setup.py
-  - easy_install virtualenv
-  - mkdir build
-  - mkdir build/html
-  - git clone --quiet https://github.com/sicp-reading/sicp-reading.github.io.git build/html
-  - pushd build/html
-  - popd
+ - curl -O http://python-distribute.org/distribute_setup.py
+ - python2.7 distribute_setup.py
+ - easy_install virtualenv
+ - mkdir build
+ - mkdir build/html
+ - git clone --quiet https://github.com/sicp-reading/sicp-reading.github.io.git build/html
+ - pushd build/html
+ - popd
 
 after_success:
-  - cd build/html
-  - git add -A
-  - git commit -m 'Update'
+ - echo -e "Host github.com\n\tStrictHostKeyChecking no\nIdentityFile ~/.ssh/deploy.key\n" >> ~/.ssh/config
+ - openssl aes-256-cbc -k "$SERVER_KEY" -in .travis/deploy_key.enc -d -a -out deploy.key
+ - cp deploy.key ~/.ssh/
+ - chmod 600 ~/.ssh/deploy.key
+ - cd build/html
+ - git add -A
+ - git commit -m 'Generate Travis JOB $TRAVIS_JOB_NUMBER'
+ - '[ "$TRAVIS_BRANCH" == "travis" ] && git push origin master'
