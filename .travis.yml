@@ -6,6 +6,10 @@ script:
  - make html
 env:
   global:
+    - GIT_COMMITTER_NAME = "travis-sicp"
+    - GIT_COMMITTER_EMAIL= "amasok23@gmail.com"
+    - GIT_AUTHOR_NAME= "travis-sicp"
+    - GIT_AUTHOR_EMAIL= "amasok23@gmail.com"
     - secure: Y6Uwygn8ZpRTV2lP2KuVuLjpm437QVIRiBxTS8wyn90pbTcSblflGKXpuDB/8RY2LasfZhdZGqgEScwqbbl/PGYX6RtkjDA5nsG/lVc+ifJVnSRjICY5UM5Aj+d/P9jvR4zyRsxmGVmjU5VWFkYo+Qz7cY09mnfmHnp9T62KzSY=
 
 install:
