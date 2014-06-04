@@ -29,4 +29,4 @@ after_success:
  - cd build/html
  - git add -A
  - git commit -m 'Generate Travis JOB $TRAVIS_JOB_NUMBER'
- - '[ "$TRAVIS_BRANCH" == "travis" ] && git push origin master'
+ - '[ "$TRAVIS_BRANCH" == "travis" ] && git push -f origin master'
