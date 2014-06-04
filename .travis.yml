@@ -1,9 +1,6 @@
 language: python
 python:
  - '2.7'
-script:
- - "source venv/bin/activate"
- - make html
 env:
   global:
     - GIT_COMMITTER_NAME = "travis-sicp"
@@ -21,9 +18,11 @@ before_script:
  - easy_install virtualenv
  - mkdir build
  - mkdir build/html
- - git clone --quiet https://github.com/sicp-reading/sicp-reading.github.io.git build/html
- - pushd build/html
- - popd
+ - git clone https://github.com/sicp-reading/sicp-reading.github.io.git build/html
+
+script:
+ - "source venv/bin/activate"
+ - make html
 
 after_success:
  - echo -e "Host github.com\n\tStrictHostKeyChecking no\nIdentityFile ~/.ssh/deploy.key\n" >> ~/.ssh/config
@@ -33,6 +32,9 @@ after_success:
  - cd build/html
  - git remote -v
  - git status
+ - pwd
+ - tree .
  - git add -A
  - git commit -m 'Generate Travis JOB $TRAVIS_JOB_NUMBER'
- - '[ "$TRAVIS_BRANCH" == "travis" ] && git push -f origin master'
+   #- '[ "$TRAVIS_BRANCH" == "travis" ] && git push -f origin master'
+ - git push -f origin master
