@@ -32,6 +32,7 @@ after_success:
  - chmod 600 ~/.ssh/deploy.key
  - cd build/html
  - git remote -v
+ - git status
  - git add -A
  - git commit -m 'Generate Travis JOB $TRAVIS_JOB_NUMBER'
  - '[ "$TRAVIS_BRANCH" == "travis" ] && git push -f origin master'
