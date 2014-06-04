@@ -75,6 +75,9 @@ MIT コンピュータ学科の1年生が学ぶ SICP という有名なプログ
    discussion/chapter_1/1.3.1
    discussion/chapter_1/1.3.2
    discussion/chapter_1/1.3.3
+   discussion/chapter_2/2.0.0
+   discussion/chapter_2/2.1.0
+   discussion/chapter_2/2.1.1
 
 
 解答
