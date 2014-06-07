@@ -77,6 +77,14 @@ MIT コンピュータ学科の1年生が学ぶ SICP という有名なプログ
    discussion/chapter_1/1.3.3
    discussion/chapter_1/2.1.3
 
+2 データによる抽象の構築
+------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   discussion/chapter_2/2.1.3
+
 
 解答
 =======

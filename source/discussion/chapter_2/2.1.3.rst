@@ -123,7 +123,7 @@ cons の実装は戻り値が手続きとなっている. ポイントその 1 �
 まとめ
 ---------
 
-**手続きはオブジェクトとして操作する能力が自動的に合成データを表現する能力を提供することを示している.**
+**オブジェクトとして扱うことのできる手続きは合成データを表現し得る.**
 
 .. the ability to manipulate procedures as objects automatically provides the ability to represent compound data
 
