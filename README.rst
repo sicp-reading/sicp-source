@@ -74,7 +74,8 @@ Python2.7 の virtualenv が使えることが前提.
 
 .. sourcecode:: sh
 
-   $ gitclone git@github.com:sicp-reading/sicp-source.git
+   $ git clone git@github.com:sicp-reading/sicp-source.git
+   $ cd sicp-source
    $ source install.sh 
 
 ローカルで作業
