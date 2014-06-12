@@ -143,7 +143,7 @@ MIT コンピュータ学科の1年生が学ぶ SICP という有名なプログ
 .. toctree::
    :maxdepth: 1
 
-   answers/chapter_2/ex2.4
+   answers/chapter_2/ex2.04
 
 
 備考
